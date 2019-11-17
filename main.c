@@ -11,9 +11,11 @@
 
 
 int main(){
+  long totalsize = 0;
 	struct dirent * data;
 
-  DIR * direc = opendir("./.git");
+  DIR * direc = opendir(".");
+  printf("\n");
 
   while ((data = readdir(direc)) != NULL) {
     int isDir = (data->d_type);
@@ -57,10 +59,12 @@ int main(){
     printf("%c%c%c  ", arr[mode % 8][0], arr[mode % 8][1], arr[mode % 8][2]);
     stat(data->d_name, &buf);
     long int size = buf.st_size;
+    totalsize += size;
     printf("  %ldB", size);
     printf("    %s\n", data->d_name);
   }
   closedir(direc);
+  printf("\nTotal Size: %ld\n", totalsize);
 
   return 0;
 }
