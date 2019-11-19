@@ -13,7 +13,10 @@
 int main(int argc, char *argv[]){
   long totalsize = 0;
 	struct dirent * data;
-
+  if (argc < 2){
+    printf("YOU MUST INPUT A DIRECTORY\n");
+    return 0;
+  }
   //DIR * direc = opendir(".");
   DIR * direc = opendir(argv[1]);
   if (direc == NULL) {
@@ -21,8 +24,8 @@ int main(int argc, char *argv[]){
 		return 0;
   }
   printf("\n");
-
-  while ((data = readdir(direc)) != NULL) {
+  data = readdir(direc);
+  while (data != NULL) {
     int isDir = (data->d_type);
     if (isDir == 4){
       printf("d");
@@ -67,6 +70,7 @@ int main(int argc, char *argv[]){
     totalsize += size;
     printf("  %ldB", size);
     printf("    %s\n", data->d_name);
+    data = readdir(direc);
   }
   closedir(direc);
   printf("\nTotal Size: %ld\n", totalsize);
