@@ -73,7 +73,7 @@ int main(int argc, char *argv[]){
     data = readdir(direc);
   }
   closedir(direc);
-  printf("\nTotal Size: %ld\n", totalsize);
+  printf("\nTotal Size: %ldB\n", totalsize);
 
   return 0;
 }
