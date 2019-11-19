@@ -5,7 +5,7 @@ main.o: main.c
 	gcc -c main.c
 
 run:
-	./program
+	./program 
 
 clean:
 	rm *.o
