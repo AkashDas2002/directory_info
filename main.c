@@ -10,11 +10,16 @@
 #include <dirent.h>
 
 
-int main(){
+int main(int argc, char *argv[]){
   long totalsize = 0;
 	struct dirent * data;
 
-  DIR * direc = opendir(".");
+  //DIR * direc = opendir(".");
+  DIR * direc = opendir(argv[1]);
+  if (direc == NULL) {
+    printf("There's an error: %s\n", strerror(errno));
+		return 0;
+  }
   printf("\n");
 
   while ((data = readdir(direc)) != NULL) {
